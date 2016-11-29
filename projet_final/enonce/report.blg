@@ -1,0 +1,14 @@
+[0] Config.pm:321> INFO - This is Biber 1.9
+[1] Config.pm:324> INFO - Logfile is 'report.blg'
+[63] biber:277> INFO - === mer. dÃ©c. 16, 2015, 18:09:05
+[63] Biber.pm:334> INFO - Reading 'report.bcf'
+[182] Biber.pm:636> INFO - Found 1 citekeys in bib section 0
+[219] Biber.pm:3052> INFO - Processing section 0
+[260] Biber.pm:3190> INFO - Looking for bibtex format file 'library.bib' for section 0
+[262] bibtex.pm:979> INFO - Decoding LaTeX character macros into UTF-8
+[262] bibtex.pm:853> INFO - Found BibTeX data source 'library.bib'
+[307] UCollate.pm:66> INFO - Overriding locale 'fr-FR' defaults 'variable = shifted' with 'variable = non-ignorable'
+[307] UCollate.pm:66> INFO - Overriding locale 'fr-FR' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[307] Biber.pm:2929> INFO - Sorting list 'nyt' of type 'entry' with scheme 'nyt' and locale 'fr-FR'
+[311] bbl.pm:517> INFO - Writing 'report.bbl' with encoding 'UTF-8'
+[311] bbl.pm:606> INFO - Output to report.bbl

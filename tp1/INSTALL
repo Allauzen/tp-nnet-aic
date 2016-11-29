@@ -1,0 +1,4 @@
+Prerequisites:
+conda create --name deepCourse jupyter
+conda install matplotlib
+

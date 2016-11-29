@@ -1,0 +1,91 @@
+\documentclass{article}
+
+\usepackage[backend=biber, style=authoryear, url=false, natbib=true]{biblatex}
+\addbibresource{library.bib}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{color}
+\usepackage{graphicx}
+\graphicspath{{./img/}}
+\usepackage{url}
+\usepackage[french]{cleveref}
+
+\title{Projet final}
+\author{Gaétan Marceau Caron}
+\date{18 décembre 2015}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+L'apprentissage profond est considéré aujourd'hui comme une révolution dans le domaine de l'apprentissage artificielle et du traitement du signal.
+La principale raison provient de la capacité de ces modèles à repousser les limites observées durant plus de dix ans sur différents bancs de tests. 
+De plus, ces modèles sont très généraux, car ils permettent d'obtenir les meilleurs résultats sur plusieurs tâches comme la reconnaissance d'images, de son, de vidéo, mais aussi au niveau du traitement des langues naturelles et de l'apprentissage automatique de contrôleur en robotique.
+C'est très probablement pour cette raison que les grands groupes (Google, Facebook, \dots) investissent beaucoup dans la recherche concernant ces techniques.
+
+D'un point de vue de la recherche, l'étude des réseaux profonds se justifie largement par l'absence de théorie permettant d'expliquer le succès de ces méthodes.
+Plusieurs chercheurs proposent de nouvelles théories, tâches, modèles, algorithmes d'optimisation ou de régularisation qui permettront une meilleure compréhension de ce domaine.
+Néanmoins, le succès de l'apprentissage profond vient principalement d'une maîtrise avancée des moyens de calculs tels que les cartes graphiques.
+Il y a donc une grande part d'ingénierie dans la recherche et dans l'application de ces modèles à des données réelles.
+
+Heureusement, la communauté de recherche a aussi développé plusieurs librairies permettant de s'abstraire des couches de calculs numériques.
+De plus, il est maintenant fortement recommandé de rendre son code ou les modèles entraînés disponibles lorsque l'on publie un article afin que les résultats soient {\em reproductibles}. 
+Ceci facilite largement la communication et permet à la communauté de se synchroniser sur les nouvelles techniques les plus avancées. 
+
+\newpage 
+\section{Description}
+Le but du projet final est de vous initier à la recherche en apprentissage profond.
+Pour ce faire, il vous est demandé de choisir un article scientifique pour lequel il existe un code disponible pour reproduire les résultats.
+Vous devrez comprendre cet article, installer le code et faire différentes expériences permettant de répondre à des questions pertinentes que vous aurez formulées auparavant.
+Le risque associé à ce projet concerne la gestion du temps, car certains articles demandent beaucoup plus de travail pour les comprendre et/ou pour réutiliser le code.
+Vous devez donc bien choisir votre article en estimant l'effort requis pour prendre le code en main.
+
+Pour vous aider, nous vous proposons quelques projets intéressants:
+\begin{itemize}
+\item Étude du réseau pré-entraîné sur ImageNet et proposition d'une nouvelle application originale \footnote{\url{http://caffe.berkeleyvision.org/gathered/examples/imagenet.html}}
+\item Étude du réseau pré-entraîné sur ImageNet et génération de l'image qui maximise l'activation d'un neurone 
+\item Étude du modèle spatial transformer \footnote{\url{http://torch.ch/blog/2015/09/07/spatial_transformers.html}} 
+\item Étude du modèle de génération de visages \footnote{\url{http://torch.ch/blog/2015/11/13/gan.html}} 
+\item Étude de l'autoencodeur variationnel \footnote{\url{https://github.com/y0ast/VAE-Torch}} 
+\item Étude de l'algorithme NoBacktrack pour les réseaux récurrents (plus théorique) \footnote{\url{http://www.yann-ollivier.org/rech/index: première publication}} 
+\end{itemize}
+
+Il est aussi souhaitable que vous utilisiez une librairie existante telle que:
+\begin{itemize}
+\item Torch 
+\item Caffe
+\item Lasagne (Theano)
+\item Keras (Theano et Tensorflow)
+\item Tensorflow
+\item MatConvNet
+\end{itemize}
+
+Plusieurs de ces librairies proposent du code associé à des articles:
+\begin{itemize}
+\item \url{http://www.vlfeat.org/matconvnet/pretrained/}
+\item \url{http://cilvr.nyu.edu/doku.php?id=software:overfeat:start}
+\item \url{http://torch.ch/blog/}
+\end{itemize}
+
+L'étude d'une librairie en démontrant les avantages et les inconvénients est aussi un projet intéressant.
+L'étude d'un nouveau dataset (e.g. Kaggle) à l'aide d'un modèle d'apprentissage profond est aussi accepté.
+Par contre, l'étude du dataset MNIST avec le code du cours n'est pas suffisant.
+
+\newpage
+
+\section{Livrable}
+\noindent {\bf Date du livrable:} avant le 5 février 2016 \newline
+{\bf Format du livrable:} un fichier compressé nommé {\it DL\_final\_prénom\_nom.zip} contenant le code et le rapport \newline
+{\bf Dépôt:} à l'adresse \url{gaetan.marceau-caron@inria.fr} avec comme objet du message {\it DL\_final\_prénom\_nom}.\newline
+{\bf Description:}\newline
+Le livrable associé au projet final doit contenir le code accompagné d'un rapport.
+Vous serez évalué sur le rapport et le code servira éventuellement à vérifier certains éléments.
+La note finale prendra en compte l'originalité, la compréhension de l'article choisi ainsi que la pertinence des expériences réalisées.
+Nous prendrons en compte aussi la difficulté théorique ou technique des travaux présentés. 
+Par contre, nous souhaitons que le projet soit réaliste et que vous démontriez votre capacité à développer autour d'un concept complexe.
+Finalement, si plusieurs personnes travaillent sur le même sujet, il est indispensable que vous travailliez ensemble et que chacun apporte sa contribution personnelle au projet collectif.
+
+\end{document}

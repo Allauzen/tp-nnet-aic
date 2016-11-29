@@ -1,0 +1,85 @@
+\documentclass{article}
+
+\usepackage[backend=biber, style=authoryear, url=false, natbib=true]{biblatex}
+\addbibresource{library.bib}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{color}
+\usepackage{graphicx}
+\graphicspath{{./img/}}
+\usepackage{url}
+\usepackage[french]{cleveref}
+
+\title{TP3: Diagnostic du sur-apprentissage}
+\author{Gaétan Marceau Caron}
+\date{18 décembre 2015}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+Lors du tp2, vous avez implémenté l'algorithme de backpropagation qui permet de calculer efficacement le gradient de la fonction de coût par rapport aux paramètres du modèle.
+Ainsi, vous pouvez maintenant optimiser ces paramètres à l'aide de l'algorithme de descente de gradient.
+Ce problème d'optimisation s'exprime en général comme la minimisation d'une fonction de coût:
+
+\begin{equation}
+\label{eqn_risk}
+\begin{aligned}
+& \underset{\theta}{\text{min}}
+& & \mathbb{E}_{d \sim \mathcal{D}} \left[ l_d(\theta) \right] \\
+\end{aligned}
+\end{equation}
+où $\mathcal{D}$ est une distribution de probabilités sur les données, $\mathbb{E}_{d \sim \mathcal{D}}$ est l'espérance associée à cette distribution et $l_d(\theta)$ est une fonction qui évalue l'erreur du modèle paramétré par $\theta$ pour l'exemple $d$. Autrement dit, nous voulons minimiser l'erreur espérée sur les exemples générés par $\mathcal{D}$ (modèle génératif).
+À titre d'exemple, dans le TP2, nous avions $d = (x,t)$ où $x$ était une image et $t$ une étiquette, et la fonction de coût était l'opposée de la log-vraisemblance $l_d(\theta) = -\ln p_\theta(y=t|x)$ où $p_\theta(y|x)$ est la distribution modélisée par le réseau de neurones associé à $\theta$ sachant $x$.
+
+Cependant, nous ne connaissons pas explicitement $\mathcal{D}$ et travaillons plutôt avec un nombre fini d'exemples $\mathcal{D}'=\{d_1, \dots, d_N\}$ que nous appelons la base d'apprentissage.
+Nous utilisons donc cette base d'apprentissage afin d'obtenir une approximation de l'\cref{eqn_risk}:
+\begin{equation}
+\label{eqn_emprisk}
+\begin{aligned}
+& \underset{\theta}{\text{min}}
+& & \frac{1}{N} \sum_i \left[ l_{d_i}(\theta) \right] \; \mbox{où $d_i \sim \mathcal{D}$}\\
+\end{aligned}
+\end{equation}
+Malheureusement, pour n'importe quel $\mathcal{D}'$ tiré aléatoirement, cette approximation sera biaisée par le nombre fini d'exemples $N$ et nous observerons le phénomène de {\it sur-apprentissage}.
+Plus le modèle est complexe et $N$ petit, plus l'approximation sera biaisée par le {\em dilemne bias-variance} (cf. \cite[][46]{Bishop:2006} \footnote{\url{http://tinyurl.com/m62yc3c}}).
+
+
+\newpage 
+\section{Description}
+Le but du TP3 est de tester différentes configurations de réseaux de neurones, à l'aide du code développé lors du TP2, afin de minimiser l'erreur de validation sur le base d'apprentissage MNIST.
+La première étape consiste à comprendre les sorties du programme \texttt{miniNN.py} et de les visualiser avec \texttt{gnuplot nll.gnu} et \texttt{gnuplot class\_err.gnu} (la sortie du programme \texttt{python miniNN.py} doit être stockée dans le fichier \texttt{nn.dat}).
+Si l'erreur d'entraînement stagne à moins de 50\% et que le test des différences finies n'échoue pas, il vous faudra re-vérifier l'initialisation, le step-size de la descente de gradient et la mise à jour des paramètres.
+Lorsque votre réseau atteindra 97\% de précision sur l'ensemble d'entraînement, il vous faudra implémenter la fonction d'activation {\it Rectified Linear Unit} (ReLU) définie comme:
+\begin{equation}
+a = \max(0,z)
+\end{equation}
+
+En résumé, voici les étapes du TP3:
+\begin{enumerate}
+\item Vérifier que le code du TP2 fonctionne bien (réseau avec 97\% de précision sur l'entraînement)
+\item Implémenter la fonction ReLU en vous basant sur l'implémentation de la fonction sigmoïde 
+\item Montrer à l'aide d'une figure la différence entre l'utilisation de la fonction sigmoïde et ReLU sur différents réseaux, e.g., 128-128, 128-64-32-16, 256-128-64-32-16, 512-256-128-64-32-16
+\item Montrer à l'aide d'une figure le phénomène de sur-apprentissage sur les expériences précédentes ou sur un réseau 800-800
+\end{enumerate}
+Le rapport du TP3 doit contenir les figures ainsi qu'une brève analyse des phénomènes observés.
+Vous pouvez aussi tenter de répondre aux questions ouvertes que vous avez éventuellement notées dans le rapport du TP2. 
+Dans tous les cas, le rapport du TP3 doit inclure le rapport du TP2.
+
+\section{Livrable}
+\noindent {\bf Date du livrable:} avant le 8 janvier 2016 \newline
+{\bf Format du livrable:} un fichier compressé nommé {\it DL\_tp3\_prénom\_nom.zip} contenant le code et le résumé \newline
+{\bf Dépôt:} à l'adresse \url{gaetan.marceau-caron@inria.fr} avec comme objet du message {\it DL\_tp3\_prénom\_nom}.\newline
+{\bf Description:}\newline
+Le livrable associé au TP3 doit contenir le code de MiniNN complété et accompagné d'un résumé de trois à quatre pages incluant le résumé du TP2.
+Le code doit s'exécuter avec la commande \texttt{python miniNN.py} et afficher l'évolution de l'apprentissage (sortie par défaut du programme).
+Le résumé doit être succinct et se focaliser uniquement sur les points essentiels reliés à l'entraînement des réseaux de neurones.
+Ce document doit décrire les difficultés que vous avez rencontrées et, dans le cas échéant, les solutions utilisées pour les résoudre.
+Vous pouvez aussi y décrire vos questions ouvertes et proposer une expérience sur MNIST afin d'y répondre.     
+
+\printbibliography
+
+\end{document}

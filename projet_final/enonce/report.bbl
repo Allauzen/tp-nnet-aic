@@ -1,0 +1,49 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.4 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \sortlist{nyt}{nyt}
+    \entry{Bishop:2006}{book}{}
+      \name{labelname}{1}{}{%
+        {{uniquename=0,hash=53e2ec6cc7f2b8080b7b3a758d5607fe}{Bishop}{B\bibinitperiod}{Christopher\bibnamedelima M.}{C\bibinitperiod\bibinitdelim M\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{uniquename=0,hash=53e2ec6cc7f2b8080b7b3a758d5607fe}{Bishop}{B\bibinitperiod}{Christopher\bibnamedelima M.}{C\bibinitperiod\bibinitdelim M\bibinitperiod}{}{}{}{}}%
+      }
+      \list{location}{1}{%
+        {Secaucus, NJ, USA}%
+      }
+      \list{publisher}{1}{%
+        {Springer-Verlag New York, Inc.}%
+      }
+      \strng{namehash}{53e2ec6cc7f2b8080b7b3a758d5607fe}
+      \strng{fullhash}{53e2ec6cc7f2b8080b7b3a758d5607fe}
+      \field{sortinit}{B}
+      \field{sortinithash}{1a3a21dbed09540af12d49a0b14f4751}
+      \field{labelyear}{2006}
+      \field{datelabelsource}{}
+      \field{labeltitle}{Pattern Recognition and Machine Learning (Information Science and Statistics)}
+      \field{isbn}{0387310738}
+      \field{title}{Pattern Recognition and Machine Learning (Information Science and Statistics)}
+      \field{year}{2006}
+    \endentry
+  \endsortlist
+\endrefsection
+\endinput
+

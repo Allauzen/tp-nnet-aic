@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+	<div class="navbar-header">
+	  <a class="navbar-brand" href="#">Gaétan Marceau Caron</a>
+	</div>
+	<div>
+	  <ul class="nav navbar-nav">
+	    <li><a href="index.html">Home</a></li>
+	    <li class="active"><a href="course.html">Course</a></li>
+	    <li><a href="project.html">Project</a></li>
+	    <li><a href="about.html">About</a></li>
+	  </ul>
+	</div>
+      </div>
+    </nav>
+    <title>Homepage of Gaetan Marceau Caron</title>
+    <!-- <link rel="stylesheet" type="text/css" href="mystyle.css"> -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/superhero/bootstrap.min.css" rel="stylesheet" integrity="sha256-obxCG8hWR3FEKvV19p/G6KgEYm1v/u1FnRTS7Bc4Ii8= sha512-8Xs5FuWgtHH1JXye8aQcxVEtLqozJQAu8nhPymuRqeEslT6nJ2OgEYeS3cKiXasOVxYPN80DDoOTKWgOafU1LQ==" crossorigin="anonymous"></head> -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/superhero/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <h1>TP5: Informations complémentaires</h1>
+	  Pour le problème du test des différences finies, il vient bien de la ligne du "gradient clipping":
+	  np.clip(dparam, -5, 5, out=dparam) # clip to mitigate exploding gradients
+	  qui est un hack (bien connu dans la communauté) pour tenter d'éviter simplement le problème d'instabilité du gradient.
+	  Une variante de ce hack est aussi utilisée avec la fonction ReLU dans les réseaux feedforward (sous le nom de max-norm dans l'article de dropout).
+	  <br>
+	  Dans tous les cas, cette ligne modifie le gradient analytique et perturbe l'algorithme de descente de gradient (comme la plupart des techniques de régularisation numérique).
+	  Par contre, on évite que le gradient prenne des valeurs trop grandes ou trop petites.
+	  <br>
+	  Finalement, pour le résultat final, il est normal que l'on n'obtienne pas de l'anglais, car la granularité du modèle est faible (modèle basé sur les caractères), BPTT n'est pas suffisant et on utilise un seul livre.
+	  On voit néanmoins une progression dans l'apprentissage et on peut comparer qualitativement les résultats avec les chaînes de Markov de Claude Shannon:
+	  <br><br>
+	  (Ordre 0 - caractère iid)
+	  XFOML RXKHRJFFJUJ ZLPWCFWKCYJ
+	  FFJEYVKCQSGXYD QPAAMKBZAACIBZLHJQD
+	  <br><br>
+	  (Ordre 1 - caractère indépendant)
+	  OCRO HLI RGWR NMIELWIS EU LL NBNESEBYA TH EEI
+	  ALHENHTTPA OOBTTVA NAH BRL
+	  <br><br>
+	  (Ordre 2 - probabilité du prochain caractère sachant le précédent)
+	  ON IE ANTSOUTINYS ARE T INCTORE ST BE S DEAMY
+	  ACHIN D ILONASIVE TUCOOWE AT TEASONARE FUSO
+	  TIZIN ANDY TOBE SEACE CTISBE
+	  <br><br>
+	  (Ordre 3 -  probabilité du prochain caractère sachant les deux précédents)
+	  IN NO IST LAT WHEY CRATICT FROURE BERS GROCID
+	  PONDENOME OF DEMONSTURES OF THE REPTAGIN IS
+	  REGOACTIONA OF CRE
+	  <br><br>
+	  (Ordre 4 -  probabilité du prochain caractère sachant les trois précédents - celle-ci n'est pas dans les travaux de Shannon)
+	  THE GENERATED JOB PROVIDUAL BETTER TRAND THE DISPLAYED
+	  CODE, ABOVERY UPONDULTS WELL THE CODERST IN THESTICAL
+	  IT DO HOCK BOTHE MERG. (INSTATES CONS ERATION. NEVER
+	  ANY OF PUBLE AND TO THEORY. EVENTIAL CALLEGAND TO ELAST
+	  BENERATED IN WITH PIES AS IS WITH THE )
+	  <br><br>
+	  source: Elements of Information Theory, Thomas M. Cover & Joy A. Thomas (2006)
+	  <br><br>
+	  L'équipe de Toronto a proposé en 2011 (http://www.cs.utoronto.ca/~ilya/pubs/2011/LANG-RNN.pdf) une nouvelle architecture pour améliorer considérablement les performances des RNN.
+	  Malheureusement, l'architecture et l'optimiseur sont plus complexes et ils utilisent aussi les GPU.
+	  Pour éviter le problème des gradients, il y a les LSTM mentionnés par Yann lors du cours, mais ces modèles sont aussi très lents à entraîner et les équations plus nombreuses.
+	  Un modèle basé sur les mots donne de meilleurs résultats, mais la taille du dictionnaire est beaucoup trop grande pour nos machines (requiert aussi du GPU). http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/
+	  <br><br>
+	  Il n'y a donc pas de miracles, les RNNs sont des bêtes difficiles à entraîner (en plus, on a pas de vectorisation facile à cause de la dépendance temporelle).
+	  <br><br>
+	  Pour le rapport, je vous conseille de mentionner le phénomène de l'explosion/diminution du gradient (si possible, avec une expé qui montre ce phénomène).
+	  Vous pouvez aussi changer l'ordre du modèle et comparer les phrases (option -o).
+    </div>
+  </body>
+</html>

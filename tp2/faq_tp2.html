@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+	<div class="navbar-header">
+	  <a class="navbar-brand" href="#">Gaétan Marceau Caron</a>
+	</div>
+	<div>
+	  <ul class="nav navbar-nav">
+	    <li><a href="index.html">Home</a></li>
+	    <li class="active"><a href="course.html">Course</a></li>
+	    <li><a href="project.html">Project</a></li>
+	    <li><a href="about.html">About</a></li>
+	  </ul>
+	</div>
+      </div>
+    </nav>
+    <title>Homepage of Gaetan Marceau Caron</title>
+    <!-- <link rel="stylesheet" type="text/css" href="mystyle.css"> -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/superhero/bootstrap.min.css" rel="stylesheet" integrity="sha256-obxCG8hWR3FEKvV19p/G6KgEYm1v/u1FnRTS7Bc4Ii8= sha512-8Xs5FuWgtHH1JXye8aQcxVEtLqozJQAu8nhPymuRqeEslT6nJ2OgEYeS3cKiXasOVxYPN80DDoOTKWgOafU1LQ==" crossorigin="anonymous"></head> -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/superhero/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <h1>TP2: Informations complémentaires</h1>
+      <ol>
+	<li>Il y a une erreur dans le test des différences finies dans le fichier <code>fd_test.py:246</code>.
+	  Il faut enlever la division par <code>batch_size</code> de telle sorte à avoir:
+	  <pre>grad_b = np.sum(gradB[k],1).reshape(-1,1)</pre>
+	</li>
+	<li>Voici le résultat partiel du test des différences finies (les valeurs numériques peuvent être différentes)
+	  <pre>➜  tp2  python fd_test.py --n_epoch 1
+	    Description of the experiment
+	    ----------
+	    Learning algorithm: BURN-IN period
+	    Initial step-size: 1.0
+	    Network Architecture: [784 100  10]
+	    Number of parameters: 79510
+	    Minibatch size: 500
+	    Activation: sigmoid
+	    ----------
+	    epoch time(s) train_loss train_accuracy valid_loss valid_accuracy eta
+	    0 2.867971999999996 1.95851781456 0.25958 1.94957580919 0.2596 1.0
+	    Finite difference Bprop
+	    Checking for example 0
+	    Checking for weights
+	    [  2.79388771e-07] should be lower than 1e-4
+	    [  3.73091501e-08] should be lower than 1e-4
+	    [  1.82204394e-08] should be lower than 1e-4
+	    [  3.23724145e-08] should be lower than 1e-4
+	    ...
+	    Checking for bias
+	    [  2.62055448e-09] should be lower than 1e-4
+	    [  2.62055448e-09] should be lower than 1e-4
+	    [  2.62055448e-09] should be lower than 1e-4
+	    [  2.62055448e-09] should be lower than 1e-4
+	    ...
+	</li>
+	<li> Q. Pourquoi l'opération <code>W.dot(Y)+b</code> fonctionne alors que W.dot(Y) est une matrice et b est un vecteur ?<br>
+	  R. Grâce au mécanisme de broadcasting: <a href="project.html">http://docs.scipy.org/doc/numpy-1.10.1/user/basics.broadcasting.html</a>
+      	</li>
+      	<li>Il n'est pas nécessaire d'inclure une fonction d'activation juste avant le softmax.</li>
+        <li>Il n'est pas nécessaire de calculer le gradient par rapport aux pixels.</li>
+        <li>Pour le test des différences finies, vous pouvez modifier eps (1e-5, 1e-4) si vous obtenez une erreur avec une valeur faible (près de 1e-4)</li>
+      </ol>
+    </div>
+  </body>
+</html>

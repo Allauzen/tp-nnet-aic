@@ -1,0 +1,67 @@
+\documentclass{article}
+
+\usepackage[backend=biber, style=authoryear, url=false, natbib=true]{biblatex}
+\addbibresource{library.bib}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{cleveref}
+\usepackage{color}
+\usepackage{graphicx}
+\graphicspath{{./img/}}
+\usepackage{url}
+
+\title{TP2: Algorithme Backpropagation}
+\author{Gaétan Marceau Caron}
+\date{4 décembre 2015}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+Au cours du TP1, nous avons étudié le modèle {\it Softmax}\footnote{aussi connu sous le nom de MaxEnt} pour traiter le problème de classification probabiliste.
+Le but était de présenter deux étapes importantes de l'entraînement: la {\it forward propagation} et la mise à jour des paramètres.
+Le TP2 reprend le modèle Softmax dans un cadre plus général, celui des réseaux de neurones avec couches cachées.
+
+Dans ce cadre, on peut considérer le modèle Softmax comme un "module" qui prend en entrée des "features", e.g. les pixels d'une image, et qui donne en sortie une loi de probabilité sur les étiquettes.
+D'un point de vue computationnel, un réseau de neurones est composé de plusieurs modules, transformant simplement les features d'un espace à un autre en fonction des valeurs courantes des paramètres.
+Ainsi, le but de l'entraînement est d'apprendre les transformations pertinentes, i.e., en modifiant les paramètres, qui permettront de réaliser la tâche associée au module de sortie. 
+En augmentant le nombre de modules (mais aussi de fonctions non-linéaires), on augmente ainsi la complexité du modèle.
+La thèse du {\it Deep Learning} nous dit que les modules près des données d'entrée doivent apprennent des features de bas niveau, e.g., filtre de Gabor pour l'image, alors que les modules près de la sortie apprennent des features de haut niveau, e.g., la probabilité qu'il y ait un chat dans l'image.
+A priori, cette hiéarchie des features n'est pas imposée par le programmeur, mais apparaît naturellement lors de l'entraînement avec l'algorithme de backpropagation (\cite{Rumelhart:1988}).
+
+Le but du TP2 est de programmer les trois étapes essentielles à l'entraînement d'un réseau de neurones: la forward propagation, la backpropagation et la mise à jour des paramètres.
+Ensuite, il faudra créer un test essentiel à la vérification de votre implémentation: le test des différences finies.
+Finalement, vous pourrez comparer les performances de votre réseau de neurones avec celles de votre modèle Softmax de la semaine dernière.
+\newpage 
+\section{Description}
+\begin{enumerate}
+\item Récupérer les sources du projet à \url{...}
+\item Implémenter la fonction forward (\texttt{nn\_ops.py:72})
+\item Implémenter la fonction sigmoid et sa dérivée (\texttt{nn\_ops.py:149})
+\item Implémenter la fonction backward (\texttt{nn\_ops.py:93})
+\item Implémenter la fonction update (\texttt{nn\_ops.py:123})
+\item Implémenter le test des différences finies (\texttt{fd\_test.py})
+\end{enumerate}
+
+La différence finie est une approximation de la dérivée partielle:
+\begin{equation}
+\frac{\partial l(w)}{\partial w_{i}} \approx \frac{l(w + \epsilon e_{i}) - l(w - \epsilon e_{i})}{2 \epsilon}
+\end{equation}
+où $l$ est une fonction à plusieurs variables avec ses dérivées partielles définies, $w$ est un vecteur, $w_{i}$ est sa $i$ème composante, $\epsilon$ est la longeur du pas et $e_{i}$ est le $i$ème vecteur de la base canonique de l'espace euclidien.
+
+\section{Livrable}
+\noindent {\bf Date du livrable:} avant le 18 décembre 2015 \newline
+{\bf Format du livrable:} un fichier compressé nommé {\it DL\_tp2\_prénom\_nom.zip} contenant le code et le résumé \newline
+{\bf Dépôt:} à l'adresse \url{gaetan.marceau-caron@inria.fr} avec comme objet du message {\it DL\_tp2\_prénom\_nom}.\newline
+{\bf Description:}\newline
+Le livrable associé au TP2 doit contenir le code de MiniNN complété et accompagné d'un résumé de une à deux pages.
+Le code doit s'exécuter avec la commande \texttt{python miniNN.py} et afficher l'évolution de l'apprentissage (sortie par défaut du programme).
+Le résumé doit être succinct et se focaliser uniquement sur les points essentiels reliés à l'entraînement des réseaux de neurones.
+Ce document doit décrire les difficultés que vous avez rencontrées et, dans le cas échéant, les solutions utilisées pour les résoudre.
+Vous pouvez aussi y décrire vos questions ouvertes et proposer une expérience sur MNIST afin d'y répondre.     
+
+\printbibliography
+
+\end{document}
