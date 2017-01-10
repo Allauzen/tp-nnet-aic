@@ -58,7 +58,7 @@ def computeLoss(W, b, batch, labels, softmax):
     fy = out[labels,np.arange(np.size(labels))]
     try:
         loss = np.sum(-1. * np.log(fy))/np.size(labels)
-    except Exception:
+    except:
         fy[fy<1e-4] = fy[fy<1e-4] + 1e-6
         loss = np.sum(-1. * np.log(fy))/np.size(labels)
     accuracy = np.sum(np.equal(pred,labels))/float(np.size(labels))        

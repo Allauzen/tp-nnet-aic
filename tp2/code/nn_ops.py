@@ -41,7 +41,8 @@ def initNetwork(nn_arch, act_func_name):
     nb_params = 0
     
     for i in range(np.size(nn_arch)-1):
-        w = 0.01*np.ones((nn_arch[i+1],nn_arch[i]))
+        #w = 0.01*np.ones((nn_arch[i+1],nn_arch[i]))
+        w = np.random.normal(loc=0.0, scale=sigma/np.sqrt(nn_arch[i]), size=(nn_arch[i+1],nn_arch[i]))
         W.append(w)
         b = np.sum(w,1).reshape(-1,1)/-2.0
         B.append(b)

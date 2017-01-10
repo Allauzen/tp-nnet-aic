@@ -66,7 +66,7 @@ cumul_time = 0.
 one_hot = np.zeros((n_label,n_training))
 one_hot[train_set[1],np.arange(n_training)]=1.
 
-printDescription("Bprop", eta, nn_arch, act_func_name, batch_size, nb_params)
+printDescription("Bprop", eta, nn_arch, act_func_name, batch_size, nb_param = nb_params)
 print("epoch time(s) train_loss train_accuracy valid_loss valid_accuracy eta") 
 
 #############################

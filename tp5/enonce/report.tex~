@@ -1,0 +1,70 @@
+\documentclass{article}
+
+\usepackage[backend=biber, style=authoryear, url=false, natbib=true]{biblatex}
+\addbibresource{library.bib}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{color}
+\usepackage{graphicx}
+\graphicspath{{./img/}}
+\usepackage{url}
+\usepackage[french]{cleveref}
+
+\title{TP5: Réseaux récurrents}
+\author{Gaétan Marceau Caron}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+Lors des séances précédentes, nous nous sommes intéressés à la tâche de la classification d'images avec un réseau neuronal classique.
+En particulier, nous n'avons pas pris en compte la topologie naturelle de l'image.
+Un réseau de convolution utilise directement cette information en parcourant l'image avec des noyaux qui traitent chaque pixel et son voisinage.
+En conséquence, cette information permet au réseau de convolution de dépasser significativement les réseaux classiques dans le traitement d'images.
+
+De manière analogique, différent modèles issus des réseaux de neurones sont adaptés aux structures naturelles des données.
+Un exemple important consiste à modéliser la probabilité d'observer une séquence de symbole.
+De manière général, les symboles ne sont pas tous mutuellement indépendants.
+Par exemple, dans les langues naturelles, la probabilité d'une lettre dépend des lettres voisines.
+
+Les réseaux récurrents sont des réseaux de neurones avec une mémoire permettant d'apprendre un ``contexte'' et de faire une prédiction.
+Ces réseaux sont adaptés pour l'apprentissage de séquences c'est-à-dire de données possédant un ordre naturel.
+Par exemple, les textes, un flux de données Internet, une vidéo ou un enregistrement audio sont des séquences pouvant être traitées par des réseaux récurrents.
+Le but du réseau récurrent est alors de prédire la prochaine donnée.
+
+Dans ce TP5, nous allons étudier un réseau récurrent simple pour la tâche de prédiction de caractères.
+
+ 
+
+
+\section{Description}
+
+En résumé, voici les étapes du TP4:
+\begin{enumerate}
+\item Implémenter les méthodes de régularisation $L_1$ et $L_2$
+\item Tester différentes valeurs de $\lambda$ et commenter son influence sur les courbes d'apprentissage 
+\item Implémenter la méthode de régularisation dropout
+\item Tester un réseau 800-800 avec ReLU et dropout
+\end{enumerate}
+Le rapport du TP4 doit contenir les figures ainsi qu'une brève analyse des phénomènes observés.
+Vous pouvez aussi tenter de répondre aux questions ouvertes que vous avez éventuellement notées dans le rapport du TP3. 
+Dans tous les cas, le rapport du TP4 doit inclure les rapports du TP2 et TP3.
+
+\section{Livrable}
+\noindent {\bf Date du livrable:} avant le 15 janvier 2016 \newline
+{\bf Format du livrable:} un fichier compressé nommé {\it DL\_tp4\_prénom\_nom.zip} contenant le code et le résumé \newline
+{\bf Dépôt:} à l'adresse \url{gaetan.marceau-caron@inria.fr} avec comme objet du message {\it DL\_tp4\_prénom\_nom}.\newline
+{\bf Description:}\newline
+Le livrable associé au TP4 doit contenir le code de MiniNN complété et accompagné d'un résumé de quatre pages à cinq pages incluant les résumés du TP2 et TP3.
+Le code doit s'exécuter avec la commande \texttt{python miniNN.py} et afficher l'évolution de l'apprentissage (sortie par défaut du programme).
+Le résumé doit être succinct et se focaliser uniquement sur les points essentiels reliés à l'entraînement des réseaux de neurones.
+Ce document doit décrire les difficultés que vous avez rencontrées et, dans le cas échéant, les solutions utilisées pour les résoudre.
+Vous pouvez aussi y décrire vos questions ouvertes et proposer une expérience sur MNIST afin d'y répondre.     
+
+\printbibliography
+
+\end{document}
